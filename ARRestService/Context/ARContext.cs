@@ -9,6 +9,7 @@ namespace ARRestService.Context
 
         public DbSet<Products> Products { get; set; }
         public DbSet<Recipies> Recipies { get; set; }
+
         public DbSet<Users> Users { get; set; }
 
     }

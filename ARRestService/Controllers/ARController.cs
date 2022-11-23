@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using ARRestService.Models;
 using Microsoft.AspNetCore.Http;
+using System;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,15 +29,24 @@ namespace ARRestService.Controllers
         // GET: api/<ValuesController>
 
         // [ProducesResponseType(StatusCodes.Status200OK)]
-       //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
 
 
-
-        [HttpGet]
-        public IEnumerable<string> Get()
+        //Products GetByUuid
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{uuid}")]
+        public ActionResult<Products> GetByUuid(Guid uuid)
         {
-            return new string[] { "value1", "value2" };
+            Products products = _aRManager.GetByUuid(uuid);
+            if (products == null) return NotFound("No such item, uuid " + uuid);
+            return Ok(products);
         }
+
+        //Recipies GetByUuid
+
+
+        //Users GetByUuid
 
         // GET api/<ValuesController>/5
         [HttpGet("{id}")]
@@ -47,8 +57,16 @@ namespace ARRestService.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IEnumerable<Products> Post([FromBody] Products value)
         {
+            return _aRManager.Add(new Products()
+            {
+                uuid = value.uuid,
+                productName = value.productName,
+                description = value.description,
+                brand = value.brand,
+            });
+
         }
 
         // PUT api/<ValuesController>/5

@@ -1,4 +1,5 @@
 ﻿using ARRestService.Context;
+using ARRestService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,21 @@ namespace ARRestService.Managers
 
         }
 
-           //GET
-           //ADD
-           //DELETE
-           //Update
+        //GET
+        public Products GetByUuid(Guid guid)
+        {
+            return _context.Products.Find(guid);
+        }
+        //ADD
+        public IEnumerable<Products> Add(Products products)
+        {
+            _context.Products.Add(products);
+            _context.SaveChanges();
+
+            return new List<Products>();
+        }
+        //DELETE
+        //Update
 
 
     }

@@ -10,7 +10,6 @@ namespace ARRestService.Models
     {
         [Key]
         public Guid uuid { get; set; }
-
         public string productName { get; set; }
         public string description { get; set; }
         public bool brand { get; set; }
@@ -19,7 +18,6 @@ namespace ARRestService.Models
         {
 
         }
-
 
     }
 }
