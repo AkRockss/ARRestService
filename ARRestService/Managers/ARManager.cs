@@ -3,7 +3,6 @@ using ARRestService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ARRestService.Managers
 {
@@ -20,19 +19,32 @@ namespace ARRestService.Managers
 
         }
 
-        //GET
+        //GETBYGUID
         public Products GetByUuid(Guid guid)
         {
-            return _context.Products.Find(guid);
+            return _context._Products.Find(guid);
         }
         //ADD
         public IEnumerable<Products> Add(Products products)
         {
-            _context.Products.Add(products);
+            _context._Products.Add(products);
             _context.SaveChanges();
 
             return new List<Products>();
         }
+
+        //GET
+        public IEnumerable<Products> GetAll(Guid productId)
+        {
+            IEnumerable<Products> products = from product in _context._Products where productId != null  
+                                             || product.productId.Equals(productId)
+                                             select product;
+            return products;  
+                                             
+        }
+
+           
+        //}
         //DELETE
         //Update
 
