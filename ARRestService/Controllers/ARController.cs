@@ -22,52 +22,47 @@ namespace ARRestService.Controllers
         }
 
 
-
-            //Products GetByUuid
-            [ProducesResponseType(StatusCodes.Status200OK)]
-            [ProducesResponseType(StatusCodes.Status404NotFound)]
-            [HttpGet("{uuid}")]
-            public ActionResult<Products> GetByUuid(Guid productId)
-            {
-                Products products = _aRManager.GetByUuid(productId);
-                if (products == null) return NotFound("No such item, uuid " + productId);
-                return Ok(products);
-            }
-
-            //Users GetByUuid
-
-             GET api/< ValuesController >/ 5
-            [HttpGet("{id}")]
-             public string Get(int id)
-             {
-                 return "value";
-             }
-
-            // POST api/<ValuesController>
-            [HttpPost]
-            public IEnumerable<Products> Post([FromBody] Products value)
-            {
-               return _aRManager.Add(new Products()
-                {
-                    productId = value.productId,
-                    productName = value.productName,
-                    productDescription = value.productDescription,
-                    ecology = value.ecology,
-                });
-
-            }
-
-        PUT api/< ValuesController >/ 5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //Products GetByUuid
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{productId}")]
+        public ActionResult<Products> GetByUuid(Guid productId)
         {
+            Products products = _aRManager.GetByUuid(productId);
+            if (products == null) return NotFound("No such item, productId " + productId);
+            return Ok(products);
         }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
 
+        //Products POST 
+        [HttpPost]
+        public IEnumerable<Products> Post([FromBody] Products value)
+        {
+            return _aRManager.Add(new Products()
+            {
+                productId = value.productId,
+                productName = value.productName,
+                productDescription = value.productDescription,
+                ecology = value.ecology,
+            });
 
+        }
+
+        //Products PUT
+        [HttpPut("{productId}")]
+        public Products Put(Guid productId, [FromBody] Products value)
+        {
+            return _aRManager.Update(productId, value);
+        }
+
+        //Products DELETE
+        [HttpDelete("{productId}")]
+        public Products Delete(Guid productId )
+        {
+            return _aRManager.Delete(productId);
+        }
+       
 
     }
+       
 }

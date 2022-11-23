@@ -42,14 +42,27 @@ namespace ARRestService.Managers
             return products;  
                                              
         }
-
-           
-        //}
+   
         //DELETE
-        //Update
+        public Products Delete(Guid productId)
+        {
+            Products products = _context._Products.Find(productId);
+            if (products == null) return null;
+            _context.Remove(products);
+            return products;
+        }
+
+        //UPDATE
+        public Products Update(Guid productId, Products updates)
+        {
+            Products products = _context._Products.Find(productId);
+            if (products == null) return null;
+            products.productName = updates.productName;
+            products.productDescription = updates.productDescription;
+            return products;
+        }
 
 
     }
-
 
 }
