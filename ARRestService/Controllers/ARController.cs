@@ -22,15 +22,33 @@ namespace ARRestService.Controllers
         }
 
 
-        //Products GetByUuid
+        //Products GetByProductId
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{productId}")]
-        public ActionResult<Products> GetByUuid(Guid productId)
+        public ActionResult<Products> GetByUuid(string productId)
         {
-            Products products = _aRManager.GetByUuid(productId);
+            Products products = _aRManager.GetByProductId(productId);
             if (products == null) return NotFound("No such item, productId " + productId);
             return Ok(products);
+        }
+
+
+        //Products GetByProductName
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{productName}")]
+        public ActionResult<Products> GetByProductName(string productName)
+        {
+            Products products = _aRManager.GetByProductId(productName);
+            if (products == null) return NotFound("No such item, productName " + productName);
+            return Ok(products);
+        }
+
+        [HttpGet("GetAll")]
+        public IEnumerable<Products> GetAll()
+        {
+            return _aRManager.GetAll();
         }
 
 
@@ -41,23 +59,27 @@ namespace ARRestService.Controllers
             return _aRManager.Add(new Products()
             {
                 productId = value.productId,
+                productBrand = value.productBrand,
                 productName = value.productName,
                 productDescription = value.productDescription,
-                ecology = value.ecology,
-            });
+                organic = value.organic,
+                noeglemaerket = value.noeglemaerket,
+       
+
+            }); ;
 
         }
 
         //Products PUT
         [HttpPut("{productId}")]
-        public Products Put(Guid productId, [FromBody] Products value)
+        public Products Put(string productId, [FromBody] Products value)
         {
             return _aRManager.Update(productId, value);
         }
 
         //Products DELETE
         [HttpDelete("{productId}")]
-        public Products Delete(Guid productId )
+        public Products Delete(string productId )
         {
             return _aRManager.Delete(productId);
         }

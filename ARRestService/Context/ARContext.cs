@@ -7,9 +7,9 @@ namespace ARRestService.Context
     {
         public ARContext(DbContextOptions<ARContext> options) : base(options) { }
 
-        public DbSet<Products> _Products { get; set; }
-        public DbSet<Recipies> _Recipies { get; set; }
-        public DbSet<Users> _Users { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Recipies> Recipies { get; set; }
+        public DbSet<Users> Users { get; set; }
 
     }
 }

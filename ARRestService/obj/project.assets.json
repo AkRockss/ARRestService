@@ -6430,11 +6430,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ut5\\source\\repos\\AkRockss\\ARRestService\\ARRestService\\ARRestService.csproj",
+      "projectUniqueName": "C:\\Users\\ut5\\Source\\Repos\\AkRockss\\ARRestService\\ARRestService\\ARRestService.csproj",
       "projectName": "ARRestService",
-      "projectPath": "C:\\Users\\ut5\\source\\repos\\AkRockss\\ARRestService\\ARRestService\\ARRestService.csproj",
+      "projectPath": "C:\\Users\\ut5\\Source\\Repos\\AkRockss\\ARRestService\\ARRestService\\ARRestService.csproj",
       "packagesPath": "C:\\Users\\ut5\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ut5\\source\\repos\\AkRockss\\ARRestService\\ARRestService\\obj\\",
+      "outputPath": "C:\\Users\\ut5\\Source\\Repos\\AkRockss\\ARRestService\\ARRestService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ut5\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6490,24 +6490,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.17, 5.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"

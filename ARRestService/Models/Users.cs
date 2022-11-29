@@ -9,7 +9,7 @@ namespace ARRestService.Models
     public class Users
     {
         [Key]
-        public Guid userId { get; set; }  
+        public string userId { get; set; }  
 
         public string firstName { get; set; } 
 
