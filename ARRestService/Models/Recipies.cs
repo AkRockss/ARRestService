@@ -9,11 +9,11 @@ namespace ARRestService.Models
     public class Recipies
     {
         [Key]
-        public Guid uuid { get; set; }
+        public string recipeId { get; set; }
 
-        public string title { get; set; } 
+        public string recipeTitle { get; set; } 
 
-        public string description { get; set; }
+        public string recipeDescription { get; set; }
 
         public Recipies()
         {
