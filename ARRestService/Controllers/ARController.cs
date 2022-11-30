@@ -71,10 +71,14 @@ namespace ARRestService.Controllers
         }
 
         //Products PUT
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("UpdateProduct/{productId}")]
-        public Products Put(string productId, [FromBody] Products value)
+        public ActionResult<Products> Put(string productId, [FromBody] Products value)
         {
-            return _aRManager.Update(productId, value);
+            Products result = _aRManager.Update(productId, value);
+            if (result == null) return NotFound("No such item, productId " + productId);
+            return Ok(result);  
         }
 
         //Products DELETE

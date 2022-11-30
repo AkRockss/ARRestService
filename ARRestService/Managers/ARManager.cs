@@ -64,11 +64,16 @@ namespace ARRestService.Managers
         //UPDATE
         public Products Update(string productId, Products updates)
         {
-            Products products = _context.Products.Find(productId);
-            if (products == null) return null;
-            products.productName = updates.productName;
-            products.productDescription = updates.productDescription;
-            return products;
+            Products productsToBeUpdated = GetByProductId(productId);
+            productsToBeUpdated.productName = updates.productName;
+            productsToBeUpdated.productBrand = updates.productBrand;
+            productsToBeUpdated.productDescription = updates.productDescription;
+            productsToBeUpdated.organic = updates.organic;
+            productsToBeUpdated.noeglemaerket = updates.noeglemaerket;
+
+            _context.SaveChanges();
+
+            return productsToBeUpdated;
         }
 
 
