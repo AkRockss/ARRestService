@@ -10,15 +10,15 @@ using System;
 
 namespace ARRestService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Product/[controller]")]
     [ApiController]
-    public class ARController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly ARManager _aRManager;
+        private readonly ProductManager _aRManager;
 
-        public ARController(ARContext context)
+        public ProductController(ARContext context)
         {
-            _aRManager = new ARManager(context);
+            _aRManager = new ProductManager(context);
         }
 
 

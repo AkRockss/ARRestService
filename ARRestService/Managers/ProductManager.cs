@@ -6,15 +6,15 @@ using System.Linq;
 
 namespace ARRestService.Managers
 {
-    public class ARManager
+    public class ProductManager
     {
         private ARContext _context;
 
-        public ARManager(ARContext context)
+        public ProductManager(ARContext context)
         {
             _context = context; 
         }
-        public ARManager()
+        public ProductManager()
         {
 
         }
