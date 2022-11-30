@@ -25,6 +25,7 @@ namespace ARRestService.Managers
             return _context.Products.Find(productId);
         }
 
+        //GETBYProductName
         public Products GetByProductName(string productName)
         {
             return _context.Products.Find(productName);
@@ -44,17 +45,20 @@ namespace ARRestService.Managers
         {
             IEnumerable<Products> products = from product in _context.Products
                                              select product;
+           
             return products;  
        
         }
    
         //DELETE
+
+    
         public Products Delete(string productId)
         {
-            Products products = _context.Products.Find(productId);
-            if (products == null) return null;
-            _context.Remove(products);
-            return products;
+            Products productIdToBeDeleted = GetByProductId(productId);
+            _context.Products.Remove(productIdToBeDeleted);
+            _context.SaveChanges();
+            return productIdToBeDeleted;
         }
 
         //UPDATE

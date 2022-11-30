@@ -25,8 +25,8 @@ namespace ARRestService.Controllers
         //Products GetByProductId
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("{productId}")]
-        public ActionResult<Products> GetByUuid(string productId)
+        [HttpGet("GetByProductId/{productId}")]
+        public ActionResult<Products> GetByProductId(string productId)
         {
             Products products = _aRManager.GetByProductId(productId);
             if (products == null) return NotFound("No such item, productId " + productId);
@@ -37,15 +37,15 @@ namespace ARRestService.Controllers
         //Products GetByProductName
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("{productName}")]
+        [HttpGet("GetByProductName/{productName}")]
         public ActionResult<Products> GetByProductName(string productName)
         {
-            Products products = _aRManager.GetByProductId(productName);
+            Products products = _aRManager.GetByProductName(productName);
             if (products == null) return NotFound("No such item, productName " + productName);
             return Ok(products);
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("GetAllProducts")]
         public IEnumerable<Products> GetAll()
         {
             return _aRManager.GetAll();
@@ -71,17 +71,28 @@ namespace ARRestService.Controllers
         }
 
         //Products PUT
-        [HttpPut("{productId}")]
+        [HttpPut("UpdateProduct/{productId}")]
         public Products Put(string productId, [FromBody] Products value)
         {
             return _aRManager.Update(productId, value);
         }
 
         //Products DELETE
-        [HttpDelete("{productId}")]
-        public Products Delete(string productId )
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpDelete("Delete/{productId}")]
+        public ActionResult<Products> Delete(string productId)
         {
-            return _aRManager.Delete(productId);
+            Products result = _aRManager.Delete(productId);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+           
         }
        
 
