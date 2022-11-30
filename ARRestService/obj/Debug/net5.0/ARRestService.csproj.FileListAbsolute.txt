@@ -133,3 +133,5 @@ C:\Users\ut5\source\repos\AkRockss\ARRestService\ARRestService\obj\Debug\net5.0\
 C:\Users\ut5\source\repos\AkRockss\ARRestService\ARRestService\obj\Debug\net5.0\ref\ARRestService.dll
 C:\Users\ut5\source\repos\AkRockss\ARRestService\ARRestService\obj\Debug\net5.0\ARRestService.pdb
 C:\Users\ut5\source\repos\AkRockss\ARRestService\ARRestService\obj\Debug\net5.0\ARRestService.genruntimeconfig.cache
+C:\Users\ut5\Source\Repos\AkRockss\ARRestService\ARRestService\bin\Debug\net5.0\Humanizer.dll
+C:\Users\ut5\Source\Repos\AkRockss\ARRestService\ARRestService\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
