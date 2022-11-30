@@ -28,7 +28,7 @@ namespace ARRestService.Managers
         //GETBYProductName
         public Products GetByProductName(string productName)
         {
-            return _context.Products.Find(productName);
+            return _context.Products.FirstOrDefault(x => x.productName == productName);
         }
 
         //ADD
