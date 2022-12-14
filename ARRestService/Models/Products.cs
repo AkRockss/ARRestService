@@ -16,10 +16,14 @@ namespace ARRestService.Models
         public bool organic { get; set; }
         public bool noeglemaerket { get; set; }
 
+        //public DateTime? deleted { get; set; }
+
         public Products()
         {
-
+           
         }
+
+        
 
     }
 }
