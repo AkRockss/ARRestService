@@ -10,10 +10,15 @@ namespace ARRestService.Models
     {
         [Key]
         public string productId { get; set; }
+        [Required]
         public string productBrand { get; set; }
+        [Required]
         public string productName { get; set; }
+        [Required]
         public string productDescription { get; set; }
+        [Required]
         public bool organic { get; set; }
+        [Required]
         public bool noeglemaerket { get; set; }
 
         //public DateTime? deleted { get; set; }

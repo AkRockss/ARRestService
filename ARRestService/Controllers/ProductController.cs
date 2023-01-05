@@ -6,20 +6,24 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ARRestService.Controllers
 {
     [Route("Product/[controller]")]
     [ApiController]
+    [ResponseCache(/*VaryByHeader = "User-agent",*/ Duration = 10, Location = ResponseCacheLocation.Any)]
     public class ProductController : ControllerBase
     {
         private readonly ProductManager _aRManager;
+    
 
         public ProductController(ARContext context)
         {
             _aRManager = new ProductManager(context);
         }
+
 
 
         //Products GetByProductId
@@ -32,7 +36,6 @@ namespace ARRestService.Controllers
             if (products == null) return NotFound("No such item, productId " + productId);
             return Ok(products);
         }
-
 
         //Products GetByProductName
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -51,6 +54,12 @@ namespace ARRestService.Controllers
             return _aRManager.GetAll();
         }
 
+        [HttpGet("Values")]
+        public int Get()
+        {
+            return DateTime.Now.Second;
+        }
+
 
         //Products POST 
         [HttpPost]
@@ -64,7 +73,7 @@ namespace ARRestService.Controllers
                 productDescription = value.productDescription,
                 organic = value.organic,
                 noeglemaerket = value.noeglemaerket,
-       
+
 
             }); ;
 
@@ -78,7 +87,7 @@ namespace ARRestService.Controllers
         {
             Products result = _aRManager.Update(productId, value);
             if (result == null) return NotFound("No such item, productId " + productId);
-            return Ok(result);  
+            return Ok(result);
         }
 
         //Products DELETE
@@ -96,10 +105,11 @@ namespace ARRestService.Controllers
             {
                 return Ok(result);
             }
-           
+
         }
-       
 
     }
-       
 }
+
+
+
