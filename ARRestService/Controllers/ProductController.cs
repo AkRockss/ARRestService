@@ -11,7 +11,7 @@ using System;
 
 namespace ARRestService.Controllers
 {
-    [Route("Product/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     [ResponseCache(/*VaryByHeader = "User-agent",*/ Duration = 10, Location = ResponseCacheLocation.Any)]
     public class ProductController : ControllerBase
@@ -23,7 +23,6 @@ namespace ARRestService.Controllers
         {
             _aRManager = new ProductManager(context);
         }
-
 
         //Products GetByProductId
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -53,6 +52,8 @@ namespace ARRestService.Controllers
             return _aRManager.GetAll();
         }
 
+
+        // For testing Caching duration 10 sek
         [HttpGet("Values")]
         public int Get()
         {

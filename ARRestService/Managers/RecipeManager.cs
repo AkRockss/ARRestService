@@ -1,6 +1,5 @@
 ﻿using ARRestService.Context;
 using ARRestService.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -67,7 +66,7 @@ namespace ARRestService.Managers
             Recipies recipiesToBeUpdated = GetByRecipeId(recipieId);
             recipiesToBeUpdated.recipeTitle = updates.recipeTitle;
             recipiesToBeUpdated.recipeDescription = updates.recipeDescription;
-       
+
 
             _context.SaveChanges();
 

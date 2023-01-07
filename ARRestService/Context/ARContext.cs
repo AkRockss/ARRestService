@@ -5,6 +5,10 @@ namespace ARRestService.Context
 {
     public class ARContext : DbContext
     {
+        public ARContext()
+        {
+        }
+
         public ARContext(DbContextOptions<ARContext> options) : base(options) { }
 
         public DbSet<Products> Products { get; set; }

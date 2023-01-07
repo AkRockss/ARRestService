@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32407.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARRestService", "ARRestService\ARRestService.csproj", "{2EAB6E5C-5AA7-4BA1-87B6-90A776417DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARRestService", "ARRestService\ARRestService.csproj", "{2EAB6E5C-5AA7-4BA1-87B6-90A776417DB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARRestServiceTests", "ARRestServiceTests\ARRestServiceTests.csproj", "{57698086-1B74-4C77-B090-0E6B36E2BB69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2EAB6E5C-5AA7-4BA1-87B6-90A776417DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EAB6E5C-5AA7-4BA1-87B6-90A776417DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EAB6E5C-5AA7-4BA1-87B6-90A776417DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57698086-1B74-4C77-B090-0E6B36E2BB69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57698086-1B74-4C77-B090-0E6B36E2BB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57698086-1B74-4C77-B090-0E6B36E2BB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57698086-1B74-4C77-B090-0E6B36E2BB69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

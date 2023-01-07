@@ -1,6 +1,5 @@
 ﻿using ARRestService.Context;
 using ARRestService.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,11 +11,11 @@ namespace ARRestService.Managers
 
         public ProductManager(ARContext context)
         {
-            _context = context; 
+            _context = context;
         }
+
         public ProductManager()
         {
-
         }
 
         //GETBYProductId
@@ -45,14 +44,14 @@ namespace ARRestService.Managers
         {
             IEnumerable<Products> products = from product in _context.Products
                                              select product;
-           
-            return products;  
-       
+
+            return products;
+
         }
-   
+
         //DELETE
 
-    
+
         public Products Delete(string productId)
         {
             Products productIdToBeDeleted = GetByProductId(productId);
