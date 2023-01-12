@@ -150,3 +150,6 @@ C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net
 C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net5.0\Remotion.Linq.dll
 C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net5.0\Remotion.Linq.EagerFetching.dll
 C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Testing.dll
+C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net5.0\Microsoft.AspNetCore.TestHost.dll
+C:\Users\Aleksander K S M\source\repos\ARRestService\ARRestService\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll

@@ -8,7 +8,7 @@ namespace ARRestService.Managers
 {
     public class UserManager
     {
-        private ARContext _context;
+        private readonly ARContext _context;
 
         public UserManager(ARContext context)
         {

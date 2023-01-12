@@ -9,7 +9,7 @@ namespace ARRestService.Models
     public class Recipies
     {
         [Key]
-        public string recipeId { get; set; }
+        public int recipeId { get; set; }
 
         public string recipeTitle { get; set; } 
 

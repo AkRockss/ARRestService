@@ -1,5 +1,6 @@
 ﻿using ARRestService.Context;
 using ARRestService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,8 @@ namespace ARRestService.Managers
 {
     public class ProductManager
     {
-        private ARContext _context;
+        private static int _nextId = 1;
+        private readonly ARContext _context;
 
         public ProductManager(ARContext context)
         {
@@ -18,8 +20,18 @@ namespace ARRestService.Managers
         {
         }
 
+
+        //GET
+        public IEnumerable<Products> GetAll()
+        {
+            IEnumerable<Products> products = from product in _context.Products
+                                             select product;
+
+            return products;
+        }
+
         //GETBYProductId
-        public Products GetByProductId(string productId)
+        public Products GetByProductId(int productId)
         {
             return _context.Products.Find(productId);
         }
@@ -33,35 +45,16 @@ namespace ARRestService.Managers
         //ADD
         public IEnumerable<Products> Add(Products products)
         {
+            products.productId = _nextId++;
             _context.Products.Add(products);
             _context.SaveChanges();
 
             return new List<Products>();
         }
 
-        //GET
-        public IEnumerable<Products> GetAll()
-        {
-            IEnumerable<Products> products = from product in _context.Products
-                                             select product;
-
-            return products;
-
-        }
-
-        //DELETE
-
-
-        public Products Delete(string productId)
-        {
-            Products productIdToBeDeleted = GetByProductId(productId);
-            _context.Products.Remove(productIdToBeDeleted);
-            _context.SaveChanges();
-            return productIdToBeDeleted;
-        }
-
+    
         //UPDATE
-        public Products Update(string productId, Products updates)
+        public Products Update(int productId, Products updates)
         {
             Products productsToBeUpdated = GetByProductId(productId);
             productsToBeUpdated.productName = updates.productName;
@@ -75,6 +68,52 @@ namespace ARRestService.Managers
             return productsToBeUpdated;
         }
 
+        //DELETE
+        public Products Delete(int productId)
+        {
+            Products productIdToBeDeleted = GetByProductId(productId);
+            _context.Products.Remove(productIdToBeDeleted);
+            _context.SaveChanges();
+            return productIdToBeDeleted;
+        }
+
+        ////GET
+        public IEnumerable<Products> GetAll(string productname = null, string sortBy = null)
+        {
+
+            List<Products> result = new List<Products>(_context.Products);
+            if (productname != null)
+            {
+                result = result.FindAll(x => x.productName == productname);
+            }
+
+            if (sortBy != null)
+            {
+
+                if (sortBy.ToLower() == "productbrand")
+                {
+                    return result.OrderBy(x => x.productBrand);
+                }
+
+                if (sortBy.ToLower() == "productdescription")
+                {
+                    return result.OrderBy(x => x.productDescription);
+                }
+
+                if (sortBy.ToLower() == "organic")
+                {
+                    return result.OrderBy(x => x.organic);
+                }
+
+                if (sortBy.ToLower() == "noeglemaerket")
+                {
+                    return result.OrderBy(x => x.noeglemaerket);
+                }
+            }
+
+            return result;
+
+        }
 
     }
 

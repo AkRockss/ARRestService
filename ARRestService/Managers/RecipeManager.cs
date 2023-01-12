@@ -7,7 +7,8 @@ namespace ARRestService.Managers
 {
     public class RecipeManager
     {
-        private ARContext _context;
+        private static int _nextId = 1;
+        private readonly ARContext _context;
 
         public RecipeManager(ARContext context)
         {
@@ -19,7 +20,7 @@ namespace ARRestService.Managers
         }
 
         //GETBYProductId
-        public Recipies GetByRecipeId(string recipieId)
+        public Recipies GetByRecipeId(int recipieId)
         {
             return _context.Recipies.Find(recipieId);
         }
@@ -33,6 +34,7 @@ namespace ARRestService.Managers
         //ADD
         public IEnumerable<Recipies> Add(Recipies recipies)
         {
+            recipies.recipeId = _nextId++;
             _context.Recipies.Add(recipies);
             _context.SaveChanges();
 
@@ -52,7 +54,7 @@ namespace ARRestService.Managers
         //DELETE
 
 
-        public Recipies Delete(string recipieId)
+        public Recipies Delete(int recipieId)
         {
             Recipies recipieIdToBeDeleted = GetByRecipeId(recipieId);
             _context.Recipies.Remove(recipieIdToBeDeleted);
@@ -61,7 +63,7 @@ namespace ARRestService.Managers
         }
 
         //UPDATE
-        public Recipies Update(string recipieId, Recipies updates)
+        public Recipies Update(int recipieId, Recipies updates)
         {
             Recipies recipiesToBeUpdated = GetByRecipeId(recipieId);
             recipiesToBeUpdated.recipeTitle = updates.recipeTitle;

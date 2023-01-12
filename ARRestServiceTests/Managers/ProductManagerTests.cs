@@ -1,5 +1,4 @@
 ﻿using ARRestService.Context;
-using ARRestService.Controllers;
 using ARRestService.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,26 +27,60 @@ namespace ARRestService.Managers.Tests
         }
 
         [TestMethod()]
-        public void GetAllProductsTest()
+        public void TestGetAllProducts()
         {
-            // Arrange
             IEnumerable<Products> products = _productManager.GetAll();
-            Assert.AreEqual(4, products.Count());
-
+            Assert.AreEqual(3, products.Count());
         }
-
 
         [TestMethod()]
-        public void AddTest()
+        public void TestGetProductName()
         {
-            Products addPotato = new() {productId = "4", productName = "Potato", productDescription = "", noeglemaerket = true, organic = true, productBrand = "" };
-            _context.Add(addPotato);
-            Assert.AreEqual(addPotato.productName, "Potato");
+
+            IEnumerable<Products> products = _productManager.GetAll(productname: "Mælk");
+            Assert.IsTrue(1 == products.Count());
+            Assert.AreEqual(1, products.Count());
+            // Assert.IsTrue: Shows no info if the test fails.
+            // Assert.AreEquals: Shows expected and actual values if test fails
 
         }
 
+        [TestMethod()]
+        public void TestAddProduct()
+        {
+            Products a = new() { productId = 4, productBrand = "NOR", productName = "Makrel", productDescription = "PD4", organic = true, noeglemaerket = true };
+            _context.Add(a);
+            //_context.SaveChanges();
+
+            Assert.AreEqual("Makrel", a.productName);
+
+        }
+
+        [TestMethod()]
+        public void TestDeleteProduct()
+        {
+            // Arrange 
+
+           Products b = (Products)_productManager.GetAll(productname: "Makrel");
 
 
 
+
+            _productManager.Delete(b) ;
+            Assert.AreEqual("Makrel", b.productName);
+            Assert.IsTrue(b.IsDeleted);
+
+        }
+
+        //[TestMethod()]
+        //public void TestGetAllProductsAfterAdd()
+        //{
+        //    IEnumerable<Products> products = _productManager.GetAll();
+        //    Assert.AreEqual(4, products.Count());
+        //}
+
+       
+        }
     }
-    }
+
+

@@ -26,7 +26,7 @@ namespace ARRestService.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("GetByRecipeId/{productId}")]
-        public ActionResult<Recipies> GetByRecipeId(string recipeId)
+        public ActionResult<Recipies> GetByRecipeId(int recipeId)
         {
             Recipies recipies = _aRManager.GetByRecipeId(recipeId);
             if (recipies == null) return NotFound("No such item, productId " + recipeId);
@@ -69,7 +69,7 @@ namespace ARRestService.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("UpdateRecipe/{recipiId}")]
-        public ActionResult<Recipies> Put(string recipeId, [FromBody] Recipies value)
+        public ActionResult<Recipies> Put(int recipeId, [FromBody] Recipies value)
         {
             Recipies result = _aRManager.Update(recipeId, value);
             if (result == null) return NotFound("No such item, productId " + recipeId);
@@ -80,7 +80,7 @@ namespace ARRestService.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("Delete/{recipiId}")]
-        public ActionResult<Recipies> Delete(string recipeId)
+        public ActionResult<Recipies> Delete(int recipeId)
         {
             Recipies result = _aRManager.Delete(recipeId);
             if (result == null)

@@ -13,22 +13,30 @@ namespace ARRestService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ResponseCache(/*VaryByHeader = "User-agent",*/ Duration = 10, Location = ResponseCacheLocation.Any)]
+    [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
     public class ProductController : ControllerBase
     {
         private readonly ProductManager _aRManager;
-    
+
 
         public ProductController(ARContext context)
         {
             _aRManager = new ProductManager(context);
         }
 
+        //Products GetAll
+
+        [HttpGet("GetAllProducts")]
+        public IEnumerable<Products> GetAll()
+        {
+            return _aRManager.GetAll();
+        }
+
         //Products GetByProductId
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("GetByProductId/{productId}")]
-        public ActionResult<Products> GetByProductId(string productId)
+        public ActionResult<Products> GetByProductId(int productId)
         {
             Products products = _aRManager.GetByProductId(productId);
             if (products == null) return NotFound("No such item, productId " + productId);
@@ -46,23 +54,17 @@ namespace ARRestService.Controllers
             return Ok(products);
         }
 
-        [HttpGet("GetAllProducts")]
-        public IEnumerable<Products> GetAll()
-        {
-            return _aRManager.GetAll();
-        }
-
 
         // For testing Caching duration 10 sek
         [HttpGet("Values")]
-        public int Get()
+        public int GetTime()
         {
             return DateTime.Now.Second;
         }
 
 
         //Products POST 
-        [HttpPost]
+        [HttpPost("Add")]
         public IEnumerable<Products> Post([FromBody] Products value)
         {
             return _aRManager.Add(new Products()
@@ -76,38 +78,37 @@ namespace ARRestService.Controllers
 
 
             }); ;
-
         }
 
         //Products PUT
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut("UpdateProduct/{productId}")]
-        public ActionResult<Products> Put(string productId, [FromBody] Products value)
+        public ActionResult<Products> Put(int productId, [FromBody] Products value)
         {
             Products result = _aRManager.Update(productId, value);
             if (result == null) return NotFound("No such item, productId " + productId);
             return Ok(result);
         }
 
+
         //Products DELETE
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("Delete/{productId}")]
-        public ActionResult<Products> Delete(string productId)
+        public ActionResult<Products> Delete(int productId)
         {
             Products result = _aRManager.Delete(productId);
             if (result == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(result);
-            }
-
+            return NotFound(productId);
+            return Ok(result);
         }
 
+        [HttpGet("GetSortBy")]
+        public IEnumerable<Products> GetAll([FromQuery] string productName = null, [FromQuery] string sortBy = null)
+        {
+            return _aRManager.GetAll(productName, sortBy);
+        }
     }
 }
 

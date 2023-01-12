@@ -9,7 +9,7 @@ namespace ARRestService.Models
     public class Products
     {
         [Key]
-        public string productId { get; set; }
+        public int productId { get; set; }
         [Required]
         public string productBrand { get; set; }
         [Required]
