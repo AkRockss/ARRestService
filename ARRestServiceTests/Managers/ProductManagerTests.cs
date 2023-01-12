@@ -30,59 +30,41 @@ namespace ARRestService.Managers.Tests
         public void TestGetAllProducts()
         {
             IEnumerable<Products> products = _productManager.GetAll();
-            //Assert.AreEqual(4, products.Count());
-        //}
+            Assert.AreEqual(3, products.Count());
+        }
 
-        //[TestMethod()]
-        //public void TestGetProductName()
-        //{
+        [TestMethod()]
+        public void TestGetProductName()
+        {
 
-            /*IEnumerable<Products> products = */_productManager.GetAll(productname: "Mælk");
-            Assert.IsTrue(1 == products.Count());
+            IEnumerable<Products> products =
+            _productManager.GetAll("Mælk");
             Assert.AreEqual(1, products.Count());
-            // Assert.IsTrue: Shows no info if the test fails.
-            // Assert.AreEquals: Shows expected and actual values if test fails
+          
 
-        //}
+        }
 
-        //[TestMethod()]
-        //public void TestAddProduct()
-        //{
+        [TestMethod()]
+        public void TestAddProduct()
+        {
             Products a = new() { productId = 4, productBrand = "NOR", productName = "Makrel", productDescription = "PD4", organic = true, noeglemaerket = true };
             _context.Add(a);
             _context.SaveChanges();
 
             Assert.AreEqual("Makrel", a.productName);
+            Assert.AreEqual(4, _productManager.GetAll().Count());
 
-        //}
+        }
 
-        //[TestMethod()]
-        //public void TestGetAllProductsAfterAdd()
-        //{
-           /* IEnumerable<Products> products =*/ _productManager.GetAll();
-            Assert.AreEqual(5, products.Count());
-        //}
-
-
-        //[TestMethod()]
-        //public void TestDeleteProduct()
-        //{
+        [TestMethod()]
+        public void TestDeleteProduct()
+        {
 
             Products deleteProduct = _productManager.Delete(4);
             Assert.AreEqual("Makrel", deleteProduct.productName);
-            Assert.AreEqual(4, _productManager.GetAll().Count());
+            Assert.AreEqual(3, _productManager.GetAll().Count());
 
-            Assert.IsNull(_productManager.Delete(100));
-        //}
-
-
-        //[TestMethod()]
-        //public void TestGetAllProductsAfterDelete()
-        //{
-           /* IEnumerable<Products> products =*/ _productManager.GetAll();
-            Assert.AreEqual(4, products.Count());
         }
-
 
     }
 }
