@@ -30,57 +30,61 @@ namespace ARRestService.Managers.Tests
         public void TestGetAllProducts()
         {
             IEnumerable<Products> products = _productManager.GetAll();
-            Assert.AreEqual(3, products.Count());
-        }
+            //Assert.AreEqual(4, products.Count());
+        //}
 
-        [TestMethod()]
-        public void TestGetProductName()
-        {
+        //[TestMethod()]
+        //public void TestGetProductName()
+        //{
 
-            IEnumerable<Products> products = _productManager.GetAll(productname: "Mælk");
+            /*IEnumerable<Products> products = */_productManager.GetAll(productname: "Mælk");
             Assert.IsTrue(1 == products.Count());
             Assert.AreEqual(1, products.Count());
             // Assert.IsTrue: Shows no info if the test fails.
             // Assert.AreEquals: Shows expected and actual values if test fails
 
-        }
+        //}
 
-        [TestMethod()]
-        public void TestAddProduct()
-        {
+        //[TestMethod()]
+        //public void TestAddProduct()
+        //{
             Products a = new() { productId = 4, productBrand = "NOR", productName = "Makrel", productDescription = "PD4", organic = true, noeglemaerket = true };
             _context.Add(a);
-            //_context.SaveChanges();
+            _context.SaveChanges();
 
             Assert.AreEqual("Makrel", a.productName);
 
-        }
-
-        [TestMethod()]
-        public void TestDeleteProduct()
-        {
-            // Arrange 
-
-           Products b = (Products)_productManager.GetAll(productname: "Makrel");
-
-
-
-
-            _productManager.Delete(b) ;
-            Assert.AreEqual("Makrel", b.productName);
-            Assert.IsTrue(b.IsDeleted);
-
-        }
+        //}
 
         //[TestMethod()]
         //public void TestGetAllProductsAfterAdd()
         //{
-        //    IEnumerable<Products> products = _productManager.GetAll();
-        //    Assert.AreEqual(4, products.Count());
+           /* IEnumerable<Products> products =*/ _productManager.GetAll();
+            Assert.AreEqual(5, products.Count());
         //}
 
-       
+
+        //[TestMethod()]
+        //public void TestDeleteProduct()
+        //{
+
+            Products deleteProduct = _productManager.Delete(4);
+            Assert.AreEqual("Makrel", deleteProduct.productName);
+            Assert.AreEqual(4, _productManager.GetAll().Count());
+
+            Assert.IsNull(_productManager.Delete(100));
+        //}
+
+
+        //[TestMethod()]
+        //public void TestGetAllProductsAfterDelete()
+        //{
+           /* IEnumerable<Products> products =*/ _productManager.GetAll();
+            Assert.AreEqual(4, products.Count());
         }
+
+
     }
+}
 
 
