@@ -37,8 +37,6 @@ namespace ARRestService.Managers.Tests
             IEnumerable<Products> products =
             _productManager.GetAll("Mælk");
             Assert.AreEqual(1, products.Count());
-          
-
         }
 
         [TestMethod()]
@@ -50,10 +48,35 @@ namespace ARRestService.Managers.Tests
 
             Assert.AreEqual("Makrel", a.productName);
             Assert.AreEqual(4, _productManager.GetAll().Count());
+        }
+
+
+
+
+        [TestMethod()]
+        public void TestUpdateProduct()
+        {
+            Products updates = new() { productBrand = "ARG", productName = "LOMO", productDescription = "PD5", organic = false, noeglemaerket = false };
+            int id = updates.productId;
+            Products updatedProduct = _productManager.Update(id, updates);
+            Assert.AreEqual(id, updatedProduct.productId);
+            Assert.AreEqual(updates.productName, updatedProduct.productName);
+            Assert.AreEqual(updates.productBrand, updatedProduct.productBrand);
+            Assert.AreEqual(updates.productDescription, updatedProduct.productDescription);
+            Assert.AreEqual(updates.organic, updatedProduct.organic);
+            Assert.AreEqual(updates.noeglemaerket, updatedProduct.noeglemaerket);
+
+            Assert.IsNull(_productManager.Update(id + 1, updates));
+       
+           
+            
+
 
         }
 
-        [TestMethod()]
+
+
+            [TestMethod()]
         public void TestDeleteProduct()
         {
 
