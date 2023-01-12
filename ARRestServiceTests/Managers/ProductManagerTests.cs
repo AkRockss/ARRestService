@@ -21,9 +21,6 @@ namespace ARRestService.Managers.Tests
             DbContextOptionsBuilder<ARContext> options = new();
             options.UseSqlServer(Secrets.ConnectionString);
             _context = new ARContext(options.Options);
-            _productManager = new ProductManager(_context);
-            _products = new Products();
-
         }
 
         [TestMethod()]
