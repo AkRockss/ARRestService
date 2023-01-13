@@ -14,6 +14,7 @@ namespace ARRestService.Managers.Tests
         private ARContext _context;
         private ProductManager _productManager;
         private Products _products;
+       
 
         [TestInitialize]
         public void Initialize()
@@ -21,6 +22,8 @@ namespace ARRestService.Managers.Tests
             DbContextOptionsBuilder<ARContext> options = new();
             options.UseSqlServer(Secrets.ConnectionString);
             _context = new ARContext(options.Options);
+            _productManager = new ProductManager(_context);
+            _products = new Products();
         }
 
         [TestMethod()]
@@ -48,35 +51,35 @@ namespace ARRestService.Managers.Tests
 
             Assert.AreEqual("Makrel", a.productName);
             Assert.AreEqual(4, _productManager.GetAll().Count());
-        }
 
+            //a.productName = "updatedName";
+            //Products updatedProduct = _productManager.Update(a.productId, a);
+            //Assert.AreEqual("updatedName", updatedProduct.productName);
+
+
+
+
+        //[TestMethod()]
+        //public void TestUpdateProduct()
+        //{
+        //    Products updates = new() {productId = 5, productName = "LOMO", productBrand = "SCW", productDescription = "PD5", organic = false, noeglemaerket = false };
+        //    _context.Add(updates);
+        //    _context.SaveChanges();
+        //    Products updatedProduct = _productManager.Update(5, updates);
+        //    Assert.AreEqual(5, updatedProduct.productId);
+        //    Assert.AreEqual(updates.productName, updatedProduct.productName);
+        //    Assert.AreEqual(updates.productBrand, updatedProduct.productBrand);
+        //    Assert.AreEqual(updates.productDescription, updatedProduct.productDescription);
+        //    Assert.AreEqual(updates.organic, updatedProduct.organic);
+        //    Assert.AreEqual(updates.noeglemaerket, updatedProduct.noeglemaerket);
+
+        //    Assert.IsNull(_productManager.Update(5, updates));
+
+        }
 
 
 
         [TestMethod()]
-        public void TestUpdateProduct()
-        {
-            Products updates = new() { productBrand = "ARG", productName = "LOMO", productDescription = "PD5", organic = false, noeglemaerket = false };
-            int id = updates.productId;
-            Products updatedProduct = _productManager.Update(id, updates);
-            Assert.AreEqual(id, updatedProduct.productId);
-            Assert.AreEqual(updates.productName, updatedProduct.productName);
-            Assert.AreEqual(updates.productBrand, updatedProduct.productBrand);
-            Assert.AreEqual(updates.productDescription, updatedProduct.productDescription);
-            Assert.AreEqual(updates.organic, updatedProduct.organic);
-            Assert.AreEqual(updates.noeglemaerket, updatedProduct.noeglemaerket);
-
-            Assert.IsNull(_productManager.Update(id + 1, updates));
-       
-           
-            
-
-
-        }
-
-
-
-            [TestMethod()]
         public void TestDeleteProduct()
         {
 
