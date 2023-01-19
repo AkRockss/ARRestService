@@ -11,7 +11,7 @@ using System;
 
 namespace ARRestService.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
     public class ProductController : ControllerBase

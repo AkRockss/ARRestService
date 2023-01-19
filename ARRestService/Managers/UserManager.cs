@@ -8,6 +8,7 @@ namespace ARRestService.Managers
 {
     public class UserManager
     {
+        private static int _nextId = 1;
         private readonly ARContext _context;
 
         public UserManager(ARContext context)
@@ -34,11 +35,13 @@ namespace ARRestService.Managers
         //ADD
         public IEnumerable<Users> Add(Users users)
         {
+            users.userId = _nextId++;
             _context.Users.Add(users);
             _context.SaveChanges();
 
             return new List<Users>();
         }
+
 
         //GET
         public IEnumerable<Users> GetAll()

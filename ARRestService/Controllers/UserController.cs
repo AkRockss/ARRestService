@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ARRestService.Controllers
 {
-    [Route("User/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -52,19 +52,20 @@ namespace ARRestService.Controllers
         }
 
 
-        //Users POST 
+        //Users POST
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost]
-        public IEnumerable<Users> Post([FromBody] Users value)
+        public ActionResult<Users> Post([FromBody] Users value)
         {
-            return _aRManager.Add(new Users()
+            return Ok(_aRManager.Add(new Users()
             {
-                userId = value.userId,
+                //userId = value.userId,
                 firstName = value.firstName, 
                 lastName = value.lastName,
                 country = value.country,
                 email = value.email,
 
-            }); ;
+            })); ;
 
         }
 

@@ -10,7 +10,7 @@ using System;
 
 namespace ARRestService.Controllers
 {
-    [Route("Recipe/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RecipeController : ControllerBase
     {
