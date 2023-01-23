@@ -2,6 +2,7 @@
 using ARRestService.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +24,9 @@ namespace ARRestService.Managers.Tests
             options.UseSqlServer(Secrets.ConnectionString);
             _context = new ARContext(options.Options);
             _productManager = new ProductManager(_context);
-            _products = new Products();
+            
+            _products = new Products() {productBrand = "", productName = "ArgumentException", 
+                productDescription = "", organic = true, noeglemaerket = true};
         }
 
         [TestMethod()]
@@ -41,7 +44,8 @@ namespace ARRestService.Managers.Tests
             IEnumerable<Products> products =
             _productManager.GetAll("Mælk");
             Assert.AreEqual(1, products.Count());
-        }
+            
+        } 
 
         [TestMethod()]
         public void TestAddProduct()
@@ -57,9 +61,21 @@ namespace ARRestService.Managers.Tests
             a.productName = "updatedName";
             Products updatedProduct = _productManager.Update(a.productId, a);
             Assert.AreEqual("updatedName", updatedProduct.productName);
-    
         }
-
+       
+        //[TestMethod()]
+        //public void TestArgumentException()
+        //{
+        //    try
+        //    {
+        //        _products.productName = null;
+        //        Assert.Fail();
+        //    }
+        //    catch (ArgumentException ex)
+        //    {
+        //        Assert.AreEqual("Name is null or empty", ex.Message);
+        //    }
+        //}
 
         [TestMethod()]
         public void TestDeleteProduct()
@@ -71,6 +87,8 @@ namespace ARRestService.Managers.Tests
             Assert.AreEqual(3, _productManager.GetAll().Count());
 
         }
+
+
 
     }
 }

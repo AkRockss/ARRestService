@@ -52,8 +52,6 @@ namespace ARRestService.Managers
         }
 
         //DELETE
-
-
         public Recipies Delete(int recipieId)
         {
             Recipies recipieIdToBeDeleted = GetByRecipeId(recipieId);
