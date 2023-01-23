@@ -21,12 +21,9 @@ namespace ARRestService.Managers.Tests
         public void Initialize()
         {
             DbContextOptionsBuilder<ARContext> options = new();
-            options.UseSqlServer(Secrets.ConnectionString);
+            options.UseSqlServer(Secrets.ConnectionStringTEST);
             _context = new ARContext(options.Options);
             _productManager = new ProductManager(_context);
-            
-            _products = new Products() {productBrand = "", productName = "ArgumentException", 
-                productDescription = "", organic = true, noeglemaerket = true};
         }
 
         [TestMethod()]
@@ -62,13 +59,18 @@ namespace ARRestService.Managers.Tests
             Products updatedProduct = _productManager.Update(a.productId, a);
             Assert.AreEqual("updatedName", updatedProduct.productName);
         }
-       
+
         //[TestMethod()]
         //public void TestArgumentException()
         //{
+        //    Products a = new()
+        //    {  productId = 10, productBrand = "", productName = "S" , productDescription = "",organic = true, noeglemaerket = true};
+        //    _context.Add(a);
+        //    _context.SaveChanges();
+
         //    try
         //    {
-        //        _products.productName = null;
+        //        a.productName = null;
         //        Assert.Fail();
         //    }
         //    catch (ArgumentException ex)

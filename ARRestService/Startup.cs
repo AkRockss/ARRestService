@@ -24,7 +24,7 @@ namespace ARRestService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ARContext>(options => options.UseSqlServer(Secrets.ConnectionString));
+            services.AddDbContext<ARContext>(options => options.UseSqlServer(Secrets.ConnectionStringAzure));
             services.AddControllers();
           
             services.AddResponseCaching(x => x.MaximumBodySize = 1024);
